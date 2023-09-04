@@ -2,10 +2,7 @@ import { IconCheck } from '@tabler/icons-react';
 import { Palette } from 'color-thief-react'
 import { useState } from 'react'
 import './GetColor.css'
-
-const Loading = () => {
-  return <p className='text-2xl'>Loading...</p>
-}
+import { Loading } from '../Loading/Loading';
 
 export const GetColor = ({ imageUrl }: { imageUrl: string }) => {
   const [copy, setCopy] = useState('')
@@ -35,7 +32,11 @@ export const GetColor = ({ imageUrl }: { imageUrl: string }) => {
       {
         ({ data, loading }) => {
           if (loading) {
-            return <Loading />
+            return (
+              <div className='h-full flex items-center justify-center'>
+                <Loading />
+              </div>
+            )
           }
           return (
             <div className='h-full' style={{ filter: 'drop-shadow(0px 25px 25px rgba(0, 0, 0, 0.25))' }}>

@@ -47,11 +47,11 @@ function App() {
           <div className='w-1/2'>
             {
               image != null ?
-                <div className='h-2/3'>
+                <div className='h-3/4'>
                   <GetColor imageUrl={image} />
                 </div>
                 :
-                <div className='h-2/3 flex items-center justify-center flex-col'>
+                <div className='h-3/4 flex items-center justify-center flex-col'>
                   <IconMoodWrrr size={100} />
                   <p className='text-2xl'>Esperando imagen</p>
                 </div>
