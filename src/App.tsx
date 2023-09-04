@@ -4,6 +4,8 @@ import { GetColor } from './components/GetColor/GetColor'
 
 function App() {
   const [image, setImage] = useState<string | null>(null)
+  const [colors, setColors] = useState<string[]>([])
+  const [previousColors, setPreviousColors] = useState<string[]>([])
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader()
@@ -13,6 +15,7 @@ function App() {
         e.preventDefault()
 
         const result = e.target?.result as string
+        setPreviousColors(colors)
         setImage(result)
       }
       e.target.value = ''
@@ -21,6 +24,10 @@ function App() {
 
   const clearImage = () => {
     setImage(null)
+  }
+
+  const getPalette = (color: any) => {
+    setColors(color)
   }
 
   return (
@@ -48,13 +55,26 @@ function App() {
             {
               image != null ?
                 <div className='h-3/4'>
-                  <GetColor imageUrl={image} />
+                  <GetColor getPalette={getPalette} imageUrl={image} />
                 </div>
                 :
-                <div className='h-3/4 flex items-center justify-center flex-col'>
+                <div className={`${colors.length > 0 ? 'h-3/4' : 'h-full'} flex items-center justify-center flex-col`}>
                   <IconMoodWrrr size={100} />
                   <p className='text-2xl'>Esperando imagen</p>
                 </div>
+            }
+            {
+              previousColors.length > 0 &&
+              <div className='h-[25%] flex flex-col gap-2 mt-5 ml-5'>
+                {previousColors.length > 0 ? <p className='text-2xl font-bold'>Colores previos</p> : null}
+                <div className='flex gap-5'>
+                  {
+                    previousColors.map((color, index) => (
+                      <div key={index} style={{ background: color, boxShadow: '0 0 5px #000' }} className='rounded-full w-14 h-14'></div>
+                    ))
+                  }
+                </div>
+              </div>
             }
           </div>
         </div>

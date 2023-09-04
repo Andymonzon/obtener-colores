@@ -1,10 +1,15 @@
 import { IconCheck } from '@tabler/icons-react';
 import { Palette } from 'color-thief-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './GetColor.css'
 import { Loading } from '../Loading/Loading';
 
-export const GetColor = ({ imageUrl }: { imageUrl: string }) => {
+interface Props {
+  imageUrl: string
+  getPalette: any
+}
+
+export const GetColor = ({ imageUrl, getPalette }: Props) => {
   const [copy, setCopy] = useState('')
 
   const colorText = (hexColor: string) => {
@@ -22,6 +27,12 @@ export const GetColor = ({ imageUrl }: { imageUrl: string }) => {
     setCopy(color)
   }
 
+  let colorArray: string[] = []
+
+  useEffect(() => {
+    getPalette(colorArray)
+  }, [colorArray])
+
   return (
     <Palette
       src={imageUrl}
@@ -38,11 +49,15 @@ export const GetColor = ({ imageUrl }: { imageUrl: string }) => {
               </div>
             )
           }
+          if (data) {
+            colorArray = data
+          }
           return (
             <div className='h-full' style={{ filter: 'drop-shadow(0px 25px 25px rgba(0, 0, 0, 0.25))' }}>
               <ul className='flex h-full'>
                 {
-                  data?.map((color, index) => (
+                  data?.map((color, index) =>
+                  (
                     <li key={index} className='flex gap-2 items-center flex-1'>
                       <div style={{ backgroundColor: color, }} className='p-5 flex-1 flex justify-center h-full relative'>
                         {
@@ -57,7 +72,8 @@ export const GetColor = ({ imageUrl }: { imageUrl: string }) => {
                         }
                       </div>
                     </li>
-                  ))
+                  )
+                  )
                 }
               </ul>
             </div>
