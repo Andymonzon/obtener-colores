@@ -49,10 +49,10 @@ export const GetColor = ({ imageUrl }: Props) => {
                   data?.map((color, index) =>
                   (
                     <li key={index} className='flex gap-2 items-center flex-1'>
-                      <div style={{ backgroundColor: color, }} className='p-5 flex-1 flex justify-center h-full relative'>
+                      <div style={{ backgroundColor: color, }} onMouseLeave={() => handleCopy('')} className='p-5 flex-1 flex justify-center h-full relative'>
                         {
                           copy === color ?
-                            <CopyCheck color={color} />
+                            <CopyCheck color={color} bottom={10} />
                             : <p
                               onClick={() => copiText(color)}
                               className={`absolute bottom-2 font-bold p-1 rounded-md duration-200 cursor-pointer ${colorText(color) ? 'text-black hover:bg-[#00000022]' : 'text-white hover:bg-[#ffffff22]'}`}>
