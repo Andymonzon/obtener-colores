@@ -1,5 +1,6 @@
+import { IconCheck } from "@tabler/icons-react"
 import { usePaletteContext } from "../../context/PaletteContext"
-import { CopyCheck } from "../CopyCheck/CopyCheck"
+import { colorText } from "../../utilitis/changeColor"
 
 export const CardPreviousColor = () => {
   const { previousColors, copy, handleCopy } = usePaletteContext()
@@ -11,17 +12,19 @@ export const CardPreviousColor = () => {
 
   return (
     previousColors.length > 0 &&
-    <div className='h-[25%] flex flex-col gap-2 mt-5 ml-5'>
+    <div className='h-[25%] flex flex-col gap-2 mt-5 lg:ml-5 items-center justify-center'>
       {previousColors.length > 0 ? <p className='text-2xl font-bold'>Colores previos</p> : null}
       <div className='flex gap-5'>
         {
           previousColors.map((color, index) => (
             <div
               onMouseLeave={() => handleCopy('')}
-              onClick={() => copiText(color)} key={index} style={{ background: color, boxShadow: '0 0 5px #000' }} className='cursor-pointer rounded-full w-14 h-14 relative'>
+              onClick={() => copiText(color)} key={index} style={{ background: color, boxShadow: '0 0 5px #000' }} className='cursor-pointer outline-none rounded-full lg:w-14 lg:h-14 w-10 h-10 relative'>
               {
                 copy === color &&
-                <CopyCheck color={color} bottom={12} />
+                <IconCheck
+                  className={`animation-aparecer absolute bottom-1 lg:bottom-3 h-[32px] p-1 w-full ${colorText(color) ? 'text-black' : 'text-white'}`}
+                />
               }
             </div>
           ))

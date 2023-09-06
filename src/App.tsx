@@ -8,17 +8,17 @@ function App() {
 
   return (
     <PaletteProvider>
-      <main className='w-full h-screen flex flex-col gap-5 justify-center p-10 items-center bg-[#FFFFFF]'>
-        <div className='flex flex-col w-full h-full gap-3 p-5 rounded-md bg-[#d9d3c3] drop-shadow-lg'>
-          <div className='flex items-center text-black'>
-            <h1 className='text-3xl font-bold'>ColorPixel</h1>
-          </div>
-          <div className='h-full flex gap-2'>
+      <main className='lg:w-full lg:h-screen lg:p-5 bg-[#f0efeb] '>
+        <div className='flex pt-5 lg:pt-0 pl-5 items-center justify-center lg:justify-start'>
+          <h1 className='text-[30px] font-bold'>ColorPixel</h1>
+        </div>
+        <div className='lg:flex w-full min-h-screen lg:min-h-0 lg:h-[calc(100vh-100px)] flex-row gap-5 p-5 lg:rounded-md bg-transparent lg:drop-shadow-lg'>
+          <div className='h-[80vh] w-full lg:h-full flex flex-col '>
             <CDragAndDrop />
-            <div className='w-1/2'>
-              <CardColor colors={colors} />
-              <CardPreviousColor />
-            </div>
+          </div>
+          <div className='lg:w-1/2 h-min mt-5 lg:mt-0 lg:h-full'>
+            <CardColor colors={colors} />
+            <CardPreviousColor />
           </div>
         </div>
       </main>

@@ -27,7 +27,7 @@ export const CDragAndDrop = () => {
   }
 
   return (
-    <div className={`h-full w-1/2 flex items-center justify-center rounded-md relative  ${image != null ? '' : 'border-2 border-black hover:bg-[#00000055] duration-200'}`}>
+    <div className={`h-full w-full flex items-center justify-center rounded-md relative  ${image != null ? '' : 'border-2 border-black lg:hover:bg-[#00000055] lg:duration-200'}`}>
       <input onChange={(e) => { handleFile(e) }} className='absolute outline-none m-0 p-0 cursor-pointer opacity-0 h-full w-full' type='file' accept='image/*' />
       <p className='text-2xl text-center'>Seleccione o arrastre una imagen</p>
       {

@@ -3,5 +3,22 @@
 @tailwind utilities;
 
 *{
-  font-family: 'Inter', sans-serif; 
+  font-family: 'Comic Neue', cursive;
+}
+
+h1{
+  font-family: 'Dancing Script', cursive;
+}
+
+.animation-aparecer{
+  animation: aparecer .2s ease-in-out forwards;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
